@@ -1,0 +1,45 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  
+    <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Fedora4</web-resource-name>
+      <url-pattern>/*</url-pattern>
+      <http-method>DELETE</http-method>
+      <http-method>PUT</http-method>
+      <http-method>HEAD</http-method>
+      <http-method>OPTIONS</http-method>
+      <http-method>PATCH</http-method>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+      <http-method>MOVE</http-method>
+      <http-method>COPY</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>fedoraUser</role-name>
+      <role-name>fedoraAdmin</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+
+<!-- 
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>fcrepo</realm-name>
+  </login-config>
+  -->
+  
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.html</form-login-page>
+            <form-error-page>/login-failed.html</form-error-page>
+        </form-login-config>
+    </login-config>
+</web-app>
