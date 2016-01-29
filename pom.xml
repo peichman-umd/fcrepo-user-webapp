@@ -4,9 +4,9 @@
   <groupId>edu.umd.lib</groupId>
   <artifactId>fcrepo-user-webapp</artifactId>
   <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>fcrepo-user-webapp</name>
-  
+
   <distributionManagement>
     <repository>
       <id>nexus</id>
@@ -19,7 +19,7 @@
       <url>https://maven.lib.umd.edu/nexus/content/repositories/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
-  
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -27,8 +27,18 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-servlet-api</artifactId>
+      <version>7.0.52</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
   </dependencies>
-  
+
   <build>
     <finalName>user</finalName>
   </build>
