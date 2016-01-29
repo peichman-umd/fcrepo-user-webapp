@@ -13,7 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+    RequestDispatcher dispatcher;
+    if (request.getRemoteUser() == null) {
+      // display the login form
+      dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+    } else {
+      // already logged in, display the profile page
+      dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+    }
     dispatcher.forward(request, response);
   }
 }

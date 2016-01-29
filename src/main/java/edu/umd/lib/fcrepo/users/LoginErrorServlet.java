@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/login-error")
 public class LoginErrorServlet extends HttpServlet {
 
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  // method must be POST to match the login form POST to j_security_check
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login-error.jsp");
     dispatcher.forward(request, response);
   }

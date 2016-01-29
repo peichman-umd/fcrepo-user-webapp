@@ -1,8 +1,9 @@
-<%@ page session="true"%>
-
-User <strong><%=request.getRemoteUser()%></strong> has been logged out.
-
-<% session.invalidate(); %>
-
-<br/><br/>
-<a href="./">Click here to log in again</a>
+<html>
+  <head>
+    <title>Logged Out - ${pageContext.request.serverName}</title>
+  </head>
+  <body>
+    <p>User <strong>${pageContext.request.remoteUser}</strong> has been logged out.</p>
+    <p><a href="./">Log In</a></p>
+  </body>
+</html>
