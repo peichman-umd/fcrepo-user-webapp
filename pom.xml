@@ -4,7 +4,7 @@
   <groupId>edu.umd.lib</groupId>
   <artifactId>fcrepo-user-webapp</artifactId>
   <packaging>war</packaging>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <name>fcrepo-user-webapp</name>
 
   <distributionManagement>
@@ -40,6 +40,37 @@
   </dependencies>
 
   <build>
-    <finalName>user</finalName>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.cargo</groupId>
+          <artifactId>cargo-maven2-plugin</artifactId>
+          <configuration>
+            <wait>true</wait>
+            <container>
+              <containerId>tomcat7x</containerId>
+              <!-- download zip url -->
+              <zipUrlInstaller>
+                <url>http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.57/bin/apache-tomcat-7.0.57.zip</url>
+                <downloadDir>${project.build.directory}/downloads</downloadDir>
+                <extractDir>${project.build.directory}/extracts</extractDir>
+              </zipUrlInstaller>
+            </container>
+            <configuration>
+              <properties>
+                <cargo.servlet.users>user:user:fedoraUser</cargo.servlet.users>
+              </properties>
+            </configuration>
+            <deployables>
+              <deployable>
+                <properties>
+                  <context>/user</context>
+                </properties>
+              </deployable>
+            </deployables>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 </project>
