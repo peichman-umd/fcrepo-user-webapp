@@ -4,8 +4,8 @@ User login/logout webapp for use alongside Fedora 4
 
 ## Usage
 
-* `mvn clean package` to create `user.war`
-* Place the `user.war` file in the Tomcat webapps directory
+* `mvn clean package`
+* Copy the WAR file to the Tomcat webapps directory as `user.war` (or whatever you want the context path for the login app to be)
 * Enable the [Tomcat Single Sign On valve](https://tomcat.apache.org/tomcat-7.0-doc/config/host.html#Single_Sign_On) in `$CATALINA_BASE/conf/server.xml`
 
 ## Description
@@ -19,7 +19,7 @@ In combination with the [optional-authn-valve](https://github.com/umd-lib/option
 To test this webapp during development, you can use the Cargo plugin to run it in a Tomcat container:
 
 ```bash
-mvn cargo:run
+mvn package cargo:run
 ```
 
 By default, it listens on port 8080. This can be configured by setting the `cargo.servlet.port`:
