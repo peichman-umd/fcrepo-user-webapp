@@ -26,19 +26,19 @@ public class IndexServlet extends HttpServlet {
      * Verify our session referrer and validate the URL Either redirect or
      * forward
      */
-    try {
-      URI refererURI = new URI(storedReferer);
-      request.setAttribute("uri", refererURI);
-      session.setAttribute("referer", null); // Prevents repeat behavior
-      // In this case, we redirect to the stored referrer
-      response.sendRedirect(storedReferer);
-    } catch (URISyntaxException e) {
-      // stored referer was not a syntactically valid URI
-      // go to the profile page instead
-      dispatcher.forward(request, response);
-    } catch (NullPointerException e) {
-      // And here, the URI was null.
-      // go to the profile page instead
+    if (storedReferer != null) {
+      try {
+        URI refererURI = new URI(storedReferer);
+        request.setAttribute("uri", refererURI);
+        session.setAttribute("referer", null); // Prevents repeat behavior
+        // In this case, we redirect to the stored referrer
+        response.sendRedirect(storedReferer);
+      } catch (URISyntaxException e) {
+        // stored referer was not a syntactically valid URI
+        // go to the profile page instead
+        dispatcher.forward(request, response);
+      }
+    } else {
       dispatcher.forward(request, response);
     }
   }
