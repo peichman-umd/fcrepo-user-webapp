@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
        */
       if (redirect != null &&
           redirect.equals("true") &&
+          referer != null &&
           !referer.isEmpty() &&
           (storedReferer == null || storedReferer.isEmpty())) {
         session.setAttribute("referer", referer);

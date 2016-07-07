@@ -1,7 +1,8 @@
 package edu.umd.lib.fcrepo.users;
 
 import java.io.IOException;
-import java.util.regex.Pattern;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,14 +26,18 @@ public class IndexServlet extends HttpServlet {
      * Verify our session referrer and validate the URL Either redirect or
      * forward
      */
-    Pattern p = Pattern.compile("^(http://|https://)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$");
-    if (storedReferer != null &&
-        p.matcher(storedReferer).matches()) {
-      // In this case, we redirect
+    try {
+      URI refererURI = new URI(storedReferer);
+      request.setAttribute("uri", refererURI);
       session.setAttribute("referer", null); // Prevents repeat behavior
       response.sendRedirect(storedReferer);
-    } else {
-      // Otherwise, display the profile page
+    } catch (URISyntaxException e) {
+      // stored referer was not a syntactically valid URI
+      // go to the profile page instead
+      dispatcher.forward(request, response);
+    } catch (NullPointerException e) {
+      // And here, the URI was null.
+      // go to the profile page instead
       dispatcher.forward(request, response);
     }
   }
