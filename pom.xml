@@ -40,7 +40,6 @@
   </dependencies>
 
   <build>
-    <finalName>user</finalName>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -62,6 +61,13 @@
                 <cargo.servlet.users>user:user:fedoraUser</cargo.servlet.users>
               </properties>
             </configuration>
+            <deployables>
+              <deployable>
+                <properties>
+                  <context>/user</context>
+                </properties>
+              </deployable>
+            </deployables>
           </configuration>
         </plugin>
       </plugins>
