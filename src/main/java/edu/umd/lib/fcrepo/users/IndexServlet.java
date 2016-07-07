@@ -30,6 +30,7 @@ public class IndexServlet extends HttpServlet {
       URI refererURI = new URI(storedReferer);
       request.setAttribute("uri", refererURI);
       session.setAttribute("referer", null); // Prevents repeat behavior
+      // In this case, we redirect to the stored referrer
       response.sendRedirect(storedReferer);
     } catch (URISyntaxException e) {
       // stored referer was not a syntactically valid URI
