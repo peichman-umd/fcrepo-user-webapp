@@ -33,3 +33,8 @@ By default, there is a single user (username `user`, password `user`) with the `
 Note that when you stop the server, you may see the following message in the terminal: **SEVERE: Could not contact localhost:8205. Tomcat may not be running.** This is actually normal and can be safely ignored.
 
 [1]: https://codehaus-cargo.github.io/cargo/Configuration+properties.html
+
+## License
+
+See the [LICENSE](LICENSE.md) file for license rights and limitations (Apache 2.0).
+
