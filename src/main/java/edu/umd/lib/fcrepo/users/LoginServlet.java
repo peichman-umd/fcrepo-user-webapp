@@ -10,8 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@SuppressWarnings("serial")
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+  private static final Logger log = LoggerFactory.getLogger(LoginServlet.class);
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,13 +28,9 @@ public class LoginServlet extends HttpServlet {
     String storedReferer = (String) session.getAttribute("referer");
 
     if (request.getRemoteUser() == null) {
-
-      /**
-       * Check for referrer and redirect. Store referrer into session.
-       *
-       * @note URL validation included elsewhere
-       * @see IndexServlet.java
-       */
+      log.info("User is not logged in");
+      // Check for referrer and redirect. Store referrer into session.
+      // URL validation is done by IndexServlet
       if (redirect != null &&
           redirect.equals("true") &&
           referer != null &&
@@ -40,11 +41,9 @@ public class LoginServlet extends HttpServlet {
       // display the login form
       dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
     } else {
-      /**
-       * Or forward to index controller
-       *
-       * @note Redirection happens on IndexServlet.java
-       */
+      log.info("User {} is logged in", request.getRemoteUser());
+      // user is already logged in, so forward to index controller
+      // redirection happens in IndexServlet
       dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
     }
     dispatcher.forward(request, response);
