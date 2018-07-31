@@ -4,8 +4,13 @@
   <groupId>edu.umd.lib</groupId>
   <artifactId>fcrepo-user-webapp</artifactId>
   <packaging>war</packaging>
-  <version>1.1.1-SNAPSHOT</version>
+  <version>1.2.0-SNAPSHOT</version>
   <name>fcrepo-user-webapp</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <tomcat.version>7.0.52</tomcat.version>
+</properties>
 
   <distributionManagement>
     <repository>
@@ -30,12 +35,17 @@
     <dependency>
       <groupId>org.apache.tomcat</groupId>
       <artifactId>tomcat-servlet-api</artifactId>
-      <version>7.0.52</version>
+      <version>${tomcat.version}</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
+    </dependency>
+    <dependency>
+	  <groupId>ch.qos.logback</groupId>
+	  <artifactId>logback-classic</artifactId>
+	  <version>1.0.13</version>
     </dependency>
   </dependencies>
 
