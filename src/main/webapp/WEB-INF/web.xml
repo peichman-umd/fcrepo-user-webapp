@@ -21,8 +21,8 @@
       <http-method>COPY</http-method>
     </web-resource-collection>
     <auth-constraint>
-      <role-name>fedoraUser</role-name>
-      <role-name>fedoraAdmin</role-name>
+      <role-name>cn=Application_Roles:Libraries:FCREPO:FCREPO-User,ou=grouper,ou=group,dc=umd,dc=edu</role-name>
+      <role-name>cn=Application_Roles:Libraries:FCREPO:FCREPO-Administrator,ou=grouper,ou=group,dc=umd,dc=edu</role-name>
     </auth-constraint>
     <user-data-constraint>
       <transport-guarantee>NONE</transport-guarantee>
